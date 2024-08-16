@@ -1,0 +1,42 @@
+{
+  "name": "sse-stringify",
+  "version": "0.0.0-alpha.0",
+  "description": "Marshalling javascript data into Server-Sent Events text/event-stream format",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "package.json",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "prepare": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenzoi/sse-stringify.git"
+  },
+  "keywords": [
+    "sse",
+    "event-stream",
+    "server-sent",
+    "EventSource"
+  ],
+  "author": "kenzoi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenzoi/sse-stringify/issues"
+  },
+  "homepage": "https://github.com/kenzoi/sse-stringify#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^22.2.0",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.1.0"
+  }
+}
