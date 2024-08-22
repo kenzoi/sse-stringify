@@ -1,6 +1,6 @@
 {
   "name": "sse-stringify",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0-alpha.2",
   "description": "Marshalling javascript data into Server-Sent Events text/event-stream format",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
     "README.md"
   ],
   "scripts": {
-    "prepare": "tsc",
+    "prepare": "rm -rf dist && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

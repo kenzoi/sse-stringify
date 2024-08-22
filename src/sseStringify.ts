@@ -6,49 +6,63 @@ export interface EventStream {
   comment?: string;
 }
 
-function isString(key: string, value: unknown) {
+function isString(value: unknown) {
   if (typeof value !== 'string') {
-    throw new TypeError(
-      `${key} value must be an string but received ${typeof value}`,
-    );
+    return false;
   }
+  return true;
 }
 
-function isInt(key: string, value: unknown) {
+function isInt(value: unknown) {
   if (
     typeof value !== 'number' ||
     Number.isNaN(value) ||
-    value === parseInt(value.toString(10), 10)
+    value !== parseInt(value.toString(10), 10)
   ) {
-    throw new TypeError(`${key} value must be an integer`);
+    return false;
   }
+  return true;
 }
 
+// TODO: add option to remove whitespace for performance needed scenarios
 export function sseStringify(value: EventStream): string {
   let buffer = '';
 
   if (value === null || typeof value !== 'object') {
-    throw new TypeError('marshal argument must be an object');
+    throw new TypeError('sseStringify argument must be an object');
   }
 
   if ('event' in value) {
-    isString('event', value.event);
+    if (!isString(value.event))
+      throw new TypeError(
+        `event value must be an string but received ${typeof value}`,
+      );
     buffer += `event: ${value.event}\n`;
   }
   if ('data' in value) {
-    isString('data', value.data);
+    if (!isString(value.data))
+      throw new TypeError(
+        `data value must be an string but received ${typeof value}`,
+      );
     buffer += `data: ${value.data}\n`;
   }
   if ('id' in value) {
-    isString('id', value.id);
+    if (!isString(value.id))
+      throw new TypeError(
+        `id value must be an string but received ${typeof value}`,
+      );
     buffer += `id: ${value.id}\n`;
   }
   if ('retry' in value) {
-    isInt('retry', value.retry);
+    if (!isInt(value.retry))
+      throw new TypeError(`retry value must be an integer`);
     buffer += `retry: ${value.retry}\n`;
   }
   if ('comment' in value) {
-    isString('comment', value.comment);
+    if (!isString(value.comment))
+      throw new TypeError(
+        `comment value must be an string but received ${typeof value}`,
+      );
     buffer += `: ${value.comment}\n`;
   }
   buffer += '\n';
