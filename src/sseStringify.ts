@@ -29,7 +29,10 @@ function hasNewline(str: string) {
   return false;
 }
 
-export function sseStringify(value: EventStream): string {
+export function sseStringify(
+  value: EventStream,
+  newline: boolean = true,
+): string {
   let buffer = '';
 
   if (
@@ -82,6 +85,8 @@ export function sseStringify(value: EventStream): string {
       throw new Error('comment value cannot contain newline escape sequence');
     buffer += `: ${value.comment}\n`;
   }
-  buffer += '\n';
+  if (newline) {
+    buffer += '\n';
+  }
   return buffer;
 }
