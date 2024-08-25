@@ -55,6 +55,7 @@ export function sseStringify(
       throw new Error('id value cannot contain newline escape sequence');
     buffer += `id: ${value.id}\n`;
   }
+
   if (Object.hasOwn(value, 'event')) {
     if (!isString(value.event))
       throw new TypeError(
@@ -64,18 +65,21 @@ export function sseStringify(
       throw new Error('event value cannot contain newline escape sequence');
     buffer += `event: ${value.event}\n`;
   }
+
   if (Object.hasOwn(value, 'data')) {
     if (!isString(value.data))
       throw new TypeError(
         `data value must be an string but received ${typeof value}`,
       );
-    buffer += `data: ${value.data}\n`;
+    buffer += `data: ${value.data.replace(/(\r\n|\n|\r)/g, '\ndata: ')}\n`;
   }
+
   if (Object.hasOwn(value, 'retry')) {
     if (!isInt(value.retry))
       throw new TypeError(`retry value must be an integer`);
     buffer += `retry: ${value.retry}\n`;
   }
+
   if (Object.hasOwn(value, 'comment')) {
     if (!isString(value.comment))
       throw new TypeError(

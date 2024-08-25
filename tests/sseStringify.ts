@@ -79,3 +79,30 @@ test('it should not return a newline at the end when newline parameter is false'
   );
   t.end();
 });
+
+test('it should marshal a multiline data field', (t) => {
+  t.equal(sseStringify({ data: 'a\na\na' }), 'data: a\ndata: a\ndata: a\n\n');
+  t.equal(sseStringify({ data: '\n' }), 'data: \ndata: \n\n');
+  t.equal(sseStringify({ data: '\r' }), 'data: \ndata: \n\n');
+  t.equal(sseStringify({ data: '\r\n' }), 'data: \ndata: \n\n');
+  t.equal(
+    sseStringify({ data: '\r\n\n\r' }),
+    'data: \ndata: \ndata: \ndata: \n\n',
+  );
+  t.equal(
+    sseStringify({
+      data: JSON.stringify({ n: 'n', o: { f: 'f', a: [0, 1] } }, null, 4),
+    }),
+    `data: {
+data:     "n": "n",
+data:     "o": {
+data:         "f": "f",
+data:         "a": [
+data:             0,
+data:             1
+data:         ]
+data:     }
+data: }\n\n`,
+  );
+  t.end();
+});
