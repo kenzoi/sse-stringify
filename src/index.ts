@@ -1,1 +1,1 @@
-export * from "./sseStringify";
+export * from './sseStringify';
