@@ -1,7 +1,7 @@
 {
   "name": "sse-stringify",
-  "version": "0.0.0-alpha.2",
-  "description": "Marshalling javascript data into Server-Sent Events text/event-stream format",
+  "version": "0.1.0",
+  "description": "Marshalling Javascript data into Server-Sent Events (sse) text/event-stream format",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "engines": {
