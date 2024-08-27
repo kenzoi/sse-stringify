@@ -44,7 +44,7 @@ sseStringify({ data: prettyJSON });
 */
 ```
 
-### Disable appending a newline at the end
+### Using with iterables and streams
 
 We can pass `false` as the second parameter to disable the newline at the end and thus
 call the function several times but send only 1 event with the result.
